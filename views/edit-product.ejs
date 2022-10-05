@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include("_head") %>
+</head>
+
+<body>
+  <%- include("_header") %>
+
+    <div class="container">
+
+      <h1 class="título">Editar um item do cardápio</h1>
+
+      <form action="/edit" method="post">
+        <div class="mb-3">
+          <label for="productId" class="form-label">Qual produto que deseja editar?</label>
+          <select class="form-select" name="productId" required="required"
+            aria-label="Selecione o produto que deseja editar">
+            <option selected value="">- Selecione aqui...</option>
+            <% products.forEach(product=> { %>
+              <option value="<%= product.id %>">
+                <%= product.name %> (<%= product.price %>)
+              </option>
+              <% }) %>
+          </select>
+        </div>
+
+        <form action="/edit" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="productName" class="form-label">Digite o novo NOME do item</label>
+            <input type="text" class="form-control" name="name" aria-describedby="nome do produto" required>
+          </div>
+          <div class="mb-3">
+            <label for="productPrice" class="form-label">Digite o novo PREÇO do item</label>
+            <input type="text" class="form-control" name="price" aria-describedby="preço do produto" required>
+          </div>
+
+          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Editar
+          </button>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Deseja mesmo editar o produto?
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                  </button>
+
+                  <button type="submit" class="btn">Editar item</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
