@@ -17,3 +17,5 @@ require("./app.routes")(app);
 app.listen(port, () => {
   console.log(`Server running ${port}`)
 });
+
+const conflito = "conflito";
